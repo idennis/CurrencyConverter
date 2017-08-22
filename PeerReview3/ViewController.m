@@ -36,12 +36,21 @@
 - (void)currencyRequest:(CRCurrencyRequest *)req
     retrievedCurrencies:(CRCurrencyResults *)currencies{
     
+    NSNumberFormatter * formatter = [[NSNumberFormatter alloc] init];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    
     double inputValue = [self.inputField.text floatValue];
     double euroValue = inputValue * currencies.EUR;
-    NSString *temp = [NSString stringWithFormat:@"%.2f", euroValue];
+    
+    self.currencyA.text = [NSString stringWithFormat:@"€%.2f", euroValue];
+    
+    double yenValue = inputValue * currencies.JPY;
+    self.currencyB.text = [NSString stringWithFormat:@"¥%.2f", yenValue];
+    
+    double poundValue = inputValue * currencies.EUR;
+    self.currencyC.text = [NSString stringWithFormat:@"£%.2f", poundValue];
     
     self.convertButton.enabled = YES;
-    self.currencyA.text = temp;
 }
 
 
